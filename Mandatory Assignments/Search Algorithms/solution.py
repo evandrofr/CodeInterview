@@ -37,7 +37,7 @@ class GraphNode:
 
 
 class Graph:
-    def __init__(self, adjacency: list[list[bool]]):
+    def __init__(self, adjacency):
         '''
         adjacency: list of values representing a binary tree. The left and right
         children of the ith element are 2i+1 and 2i+2, respectively.
@@ -59,9 +59,9 @@ post_order -> left, right, root
 
 
 
-breadth_first -> colocar root na queue, colocar todos os filhos na queue da esquerda para direita (?)
+breadth_first -> colocar root na queue, colocar todos os filhos na queue da esquerda para direita
 
-depth_first ->
+depth_first -> colocar root na stack, colocar todos os filhos na stack
 
 '''
 
@@ -125,7 +125,17 @@ def graph_depth_first_recursive(node: GraphNode, visited=None) -> None:
 
 
 def graph_depth_first_iterative(node: GraphNode) -> None:
-    pass
+    stack = [node]
+    visited = set(stack)
+    while len(stack) > 0:
+        current = stack.pop()
+        print(current.value)
+
+        for next in current.adjacent:
+            if next not in visited:
+                stack.append(next)
+                visited.add(next)
+
 
 
 def graph_breadth_first(node: GraphNode) -> None:
@@ -140,9 +150,3 @@ def graph_breadth_first(node: GraphNode) -> None:
                 queue.insert(0, next)
                 visited.add(next)
  
-if __name__ == "__main__":
-
-    def build_perfect_tree():
-        return Tree(list(range(15)))
-
-    pre_order_recursive(build_perfect_tree())
