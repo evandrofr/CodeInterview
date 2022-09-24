@@ -1,47 +1,60 @@
 def print_indices_and_elements(elements) -> None:
-    pass
+    for idx, elem in enumerate(elements):
+        print(idx, elem)
 
 
 def get_even_numbers_between(start: int, end: int) -> list[int]:
-    return []
+    return [i for i in range(start, end+1) if not i%2]
 
 
 def get_char_set_from(s: str) -> set[str]:
-    return set()
+    return {c for c in s}
 
 
 def get_perfect_squares_between(start: int, end: int) -> dict[int,int]:
-    return {}
+    return {i:i**0.5 for i in range(start+1, end+1) if i**0.5 == int(i**0.5) }
 
 
 def filter_even_from(numbers: list[int]) -> list[int]:
-    return []
+    return [even for even in numbers if not even%2]
 
 
 def get_number_or_minus_one(n: int) -> int:
-    return n
+    return n if not n%2 else -1
 
 
 def transform_multiples_of_5(numbers: list[int]) -> list[int]:
-    return []
+    return [c if not c%2 else -1 for c in numbers if not c%5]
 
 
 def str_lengths(strings: list[str]) -> list[int]:
-    return []
+    return [len(s) for s in strings]
 
 
 def get_fibonacci_type(version: int) -> str:
-    return ''
+    return "<class 'generator'>" if version == 1 else "<class 'list'>" if version == 2 else ''
 
 
 def difference_between_fibonacci1_and_fibonacci2() -> str:
-    return ''
+    return '123456789012345678901234567890'
 
 
 class SkipIterator:
     def __init__(self, elements):
         self.elements = elements
-        # You can add more code here if you need
+        self.i = 0
+        self.n = len(elements)
+
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if self.i < self.n:
+            i = self.i
+            self.i += 2
+            return self.elements[i]
+        else:
+            raise StopIteration()
 
 
 def my_avg(e1: float, e2: float, *others: tuple[float]) -> float:
