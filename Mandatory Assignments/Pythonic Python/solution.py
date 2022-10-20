@@ -61,25 +61,35 @@ class SkipIterator:
 
 
 def my_avg(e1: float, e2: float, *others: Tuple[float]) -> float:
-    return mean((e1,e2) + others)
+    count = 0
+    sum = 0
+    for value in [e1, e2, *others]:
+        count += 1
+        sum += value
+    return sum/count
 
 
 def keys_with_different_value() -> List[int]:
-    return sorted([])
+    a = dict(zip(range(10), range(10)))
+    b = dict(zip(range(5, 15), range(15, 25)))
+    return sorted([i for i in range(0,25) if (i in a.keys() and i in b.keys())])
 
 def print_out_in(*numbers) -> None:
     while len(numbers) > 1:
         # You should add code here and remove the break
-        break
+        a, *numbers, b = numbers
+        print(a,b)
 
     if numbers:
         # You should add code here
-        pass
+        c = numbers[0]
+        print(c)
 
 
-def append_range(start: int, end: int, step: int=1, to: List[int]=[]):
+def append_range(start: int, end: int, step: int=1, to: List[int]=None):
     # You may add code here
-
+    if to is None:
+        to = []
     # Don't change the code below
     for i in range(start, end, step):
         to.append(i)
@@ -94,10 +104,11 @@ def global_var_func1(n: int):
 
 
 def global_var_func2(n: int):
+    global global_var
     for i in range(n):
         global_var += i
         print(global_var)
 
 
 def value_is_None(value):
-    return value == None
+    return value is None
