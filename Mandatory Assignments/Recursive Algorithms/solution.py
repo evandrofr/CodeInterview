@@ -1,3 +1,5 @@
+from typing import List, Tuple
+
 # Do not modify the classes below
 class TreeNode:
     def __init__(self, value=None):
@@ -54,31 +56,37 @@ class LinkedList:
 
 # Implement the functions below
 
-def list_sum(l: list[int]) -> int:
-    return 0
+def list_sum(l: List[int]) -> int:
+    if not l:
+        return 0
+    return l.pop() + list_sum(l)
 
 
 def digit_sum(n: int) -> int:
-    return 0
+    if n == 0:
+        return 0
+    return (n%10) + digit_sum(n//10)
 
 
 def tree_sum(root: TreeNode) -> int:
-    return 0
+    if root is None:
+        return 0
+    return root.value + tree_sum(root.right) + tree_sum(root.left)
 
 
 def tree_max(root: TreeNode) -> int:
     return 0
 
 
-def k_combinations(l: list[int], k: int) -> list[list[int]]:
+def k_combinations(l: List[int], k: int) -> List[List[int]]:
     return []
 
 
-def all_strictly_increasing_sequences(k: int, n: int, **kwargs) -> list[list[int]]:
+def all_strictly_increasing_sequences(k: int, n: int, **kwargs) -> List[List[int]]:
     return []
 
 
-def create_pattern(n: int) -> list[int]:
+def create_pattern(n: int) -> List[int]:
     return []
 
 
@@ -87,7 +95,7 @@ def find_middle(head: LinkedListNode) -> LinkedListNode:
     return find_middle_rec(head)[1]
 
 
-def find_middle_rec(head: LinkedListNode, n: int=0) -> tuple[int, LinkedListNode]:
+def find_middle_rec(head: LinkedListNode, n: int=0) -> Tuple[int, LinkedListNode]:
     # Hint: n will be used to count nodes from left to right and
     # the number returned by the function will be used to count the nodes from right to left
     # TODO: Implement this function
